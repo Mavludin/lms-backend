@@ -30,5 +30,37 @@
         "output": "love"
       }
     ]
+  },
+  {
+    "id": 3,
+    "name": "Задача - палиндром",
+    "description": "Дана строка. Проверить является ли она палиндромом или нет.",
+    "difficulty": "medium",
+    "examples": [
+      {
+        "input": "шалаш",
+        "output": "true"
+      },
+      {
+        "input": "hello",
+        "output": "false"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Задача сложная - тест",
+    "description": "Тут короче описание какой-то нереально сложной задачи.",
+    "difficulty": "hard",
+    "examples": [
+      {
+        "input": "тест",
+        "output": "true"
+      },
+      {
+        "input": "тест",
+        "output": "false"
+      }
+    ]
   }
 ]
