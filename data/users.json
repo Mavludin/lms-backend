@@ -2,8 +2,13 @@
   {
     "id": 1,
     "userName": "Max",
-    "password": "abrakadabra",
+    "password": "123456",
     "type": "student",
-    "email": "maxwell@mail99.com"
+    "email": "maxwell@mail99.com",
+    "firstName": "James",
+    "lastName": "MaxWell",
+    "birthDate": "13.06.1831",
+    "gender": "male",
+    "course": "Frontend"
   }
 ]

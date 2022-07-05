@@ -10,17 +10,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-const users = require('./data/users.json');
-const assignments = require('./data/assignments.json');
-const solutions = require('./data/solutions.json');
-
 app.get('/api/users', (req, res) => {
+  const users = require('./data/users.json');
   res.status(200).json({ success: true, data: users });
 });
 
 app.get('/api/assignments', (req, res) => {
+  const assignments = require('./data/assignments.json');
    res.status(200).json({ success: true, data: assignments });
  });
+
+app.get('/api/open-assignments', (req, res) => {
+  const openAssignments = require('./data/openAssignments.json');
+  res.status(200).json({ success: true, data: openAssignments });
+});
+
+app.get('/api/student-stats', (req, res) => {
+  const studentStats = require('./data/studentStats.json');
+  res.status(200).json({ success: true, data: studentStats });
+});
 
 app.post('/api/solutions', (req, res) => {
  const { studentId, body } = req.body;

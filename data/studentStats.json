@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": 1,
+    "studentId": 1,
+    "averageScore": 60,
+    "completedAssignments": [
+      {
+        "id": 1,
+        "score": 60
+      }
+    ]
+  }
+]
