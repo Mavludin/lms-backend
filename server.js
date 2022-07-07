@@ -8,7 +8,9 @@ const sum = require('./test/functions');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend/build')))
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+const studentStats = require('./data/studentStats.json');
 
 app.get('/api/users', (req, res) => {
   const users = require('./data/users.json');
@@ -26,8 +28,25 @@ app.get('/api/open-assignments', (req, res) => {
 });
 
 app.get('/api/student-stats', (req, res) => {
-  const studentStats = require('./data/studentStats.json');
   res.status(200).json({ success: true, data: studentStats });
+});
+
+app.get('/api/student-stats/:studentId', (req, res) => {
+
+  const { studentId } = req.params;
+
+  const studentStatsItem = studentStats.find((student) => {
+    return student.studentId === +studentId;
+  });
+
+  if (studentStatsItem) {
+    res.status(200).json({ success: true, data: studentStatsItem });
+
+    return;
+  } else {
+    res.status(404).send({ success: false, message: 'Данных о студенте не найдено' });
+  }
+
 });
 
 app.post('/api/solutions', (req, res) => {
