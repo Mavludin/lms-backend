@@ -1,13 +1,25 @@
 [
   {
     "id": 1,
-    "userName": "Max",
+    "userName": "student1",
     "password": "123456",
     "type": "student",
     "email": "maxwell@mail99.com",
-    "firstName": "James",
-    "lastName": "MaxWell",
-    "birthDate": "13.06.1831",
+    "firstName": "Студент",
+    "lastName": "Тестовый",
+    "birthDate": "14.07.2000",
+    "gender": "male",
+    "course": "Frontend"
+  },
+  {
+    "id": 2,
+    "userName": "teacher1",
+    "password": "123456",
+    "type": "teacher",
+    "email": "teacher@gmail.com",
+    "firstName": "Препод",
+    "lastName": "Тестовый",
+    "birthDate": "12.12.1972",
     "gender": "male",
     "course": "Frontend"
   }
