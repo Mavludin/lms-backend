@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon --watch data ./server.js",
     "client": "npm run start --prefix ../frontend",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
@@ -14,5 +14,8 @@
   "dependencies": {
     "concurrently": "^7.2.1",
     "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
