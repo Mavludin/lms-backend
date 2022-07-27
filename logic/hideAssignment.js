@@ -1,38 +1,44 @@
 const fs = require("fs");
 const path = require("path");
 
-const addLesson = (req, res) => {
+const hideAssignment = (req, res) => {
   const pathToFile = path.join(
     __dirname,
     "..",
     "data",
-    "./openLessons.json"
+    "./openAssignments.json"
   );
-  const { lessonId } = req.body;
+  const { asgmtId } = req.params;
 
-  if (!lessonId) {
+  if (!asgmtId) {
     res
       .status(400)
       .send({ success: false, message: "Нет идентификатора задачи" });
+
     return;
   }
-
+  
   fs.readFile(pathToFile, "utf8", (err, data) => {
+    const copy = [...JSON.parse(data)].filter(
+      (asgmtNum) => asgmtNum !== +asgmtId
+    );
     if (err) {
-      res.status(500).send({ success: false, message: "Что-то пошло не так" });
+      res
+        .status(500)
+        .send({ success: false, message: "Что-то пошло не так" });
       return;
     }
 
-    const copy = [...new Set([...JSON.parse(data), lessonId])];
     fs.writeFile(pathToFile, JSON.stringify(copy), "utf8", (err) => {
       if (!err) {
         res.status(200).json({ success: true, data: copy });
         return;
       }
-      console.log("err", err);
-      res.status(500).send({ success: false, message: "Что-то пошло не так" });
+      res
+        .status(500)
+        .send({ success: false, message: "Что-то пошло не так" });
     });
   });
-};
+}
 
-module.exports = addLesson;
+module.exports = hideAssignment;

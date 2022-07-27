@@ -12,17 +12,22 @@ app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 const studentStats = require("./data/studentStats.json");
 const openAssignments = require("./data/openAssignments.json");
-const addAssignment = require("./logic/addAssignment");
-const removeAssignment = require("./logic/removeAssignment");
+const openAssignment = require("./logic/openAssignment");
+const hideAssignment = require("./logic/hideAssignment");
 
 const openLessons = require("./data/openLessons.json");
-const addLesson = require("./logic/addLesson");
-const removeLesson = require("./logic/removeLesson");
+const openLesson = require("./logic/openLesson");
+const hideLesson = require("./logic/hideLesson");
+
+const alreadyReadLessons = require("./data/alreadyReadLessons.json");
+const markLessonAsRead = require("./logic/markLessonAsRead");
 
 app.get("/api/users", (req, res) => {
   const users = require("./data/users.json");
   res.status(200).json({ success: true, data: users });
 });
+
+// assignments
 
 app.get("/api/assignments", (req, res) => {
   const assignments = require("./data/assignments.json");
@@ -34,24 +39,38 @@ app.get("/api/open-assignments", (req, res) => {
 });
 
 app.post("/api/open-assignments", (req, res) => {
-  addAssignment(req, res);
+  openAssignment(req, res);
 });
 
 app.delete("/api/open-assignments/:asgmtId", (req, res) => {
-  removeAssignment(req, res);
+  hideAssignment(req, res);
 });
+
+// open lessons
 
 app.get("/api/open-lessons", (req, res) => {
   res.status(200).json({ success: true, data: openLessons });
 });
 
 app.post("/api/open-lessons", (req, res) => {
-  addLesson(req, res);
+  openLesson(req, res);
 });
 
 app.delete("/api/open-lessons/:lessonId", (req, res) => {
-  removeLesson(req, res);
+  hideLesson(req, res);
 });
+
+// read lessons
+
+app.get("/api/read-lessons", (req, res) => {
+  res.status(200).json({ success: true, data: alreadyReadLessons });
+});
+
+app.post("/api/read-lessons", (req, res) => {
+  markLessonAsRead(req, res);
+});
+
+// user stats
 
 app.get("/api/student-stats", (req, res) => {
   res.status(200).json({ success: true, data: studentStats });
