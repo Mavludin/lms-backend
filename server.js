@@ -11,13 +11,18 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 const studentStats = require("./data/studentStats.json");
+
+
 const openAssignments = require("./data/openAssignments.json");
+const assignments = require("./data/assignments.json");
 const openAssignment = require("./logic/openAssignment");
 const hideAssignment = require("./logic/hideAssignment");
+
 
 const openLessons = require("./data/openLessons.json");
 const openLesson = require("./logic/openLesson");
 const hideLesson = require("./logic/hideLesson");
+
 
 const alreadyReadLessons = require("./data/alreadyReadLessons.json");
 const markLessonAsRead = require("./logic/markLessonAsRead");
@@ -30,12 +35,29 @@ app.get("/api/users", (req, res) => {
 // assignments
 
 app.get("/api/assignments", (req, res) => {
-  const assignments = require("./data/assignments.json");
   res.status(200).json({ success: true, data: assignments });
 });
 
 app.get("/api/open-assignments", (req, res) => {
   res.status(200).json({ success: true, data: openAssignments });
+});
+
+app.get("/api/assignments/:asgmtId", (req, res) => {
+  const { asgmtId } = req.params;
+
+  const assignmentItem = assignments.find((assignment) => {
+    return assignment.id === +asgmtId;
+  });
+
+  if (assignmentItem) {
+    res.status(200).json({ success: true, data: assignmentItem });
+
+    return;
+  } else {
+    res
+      .status(404)
+      .send({ success: false, message: "Данных о задаче не найдено" });
+  }
 });
 
 app.post("/api/open-assignments", (req, res) => {
