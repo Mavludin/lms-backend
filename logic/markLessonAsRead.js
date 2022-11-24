@@ -13,7 +13,7 @@ const markLessonAsRead = (req, res) => {
   if (!lessonId) {
     res
       .status(400)
-      .send({ success: false, message: "Нет идентификатора задачи" });
+      .send({ success: false, message: "Нет идентификатора материала" });
     return;
   }
 
