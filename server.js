@@ -150,6 +150,6 @@ app.post("/api/solutions", (req, res) => {
   }
 });
 
-app.listen(5000, () => {
+app.listen(5000, "localhost", () => {
   console.log("Server is listening on port 5000...");
 });
