@@ -22,14 +22,14 @@ const hideAssignment = require("./logic/hideAssignment");
 const openLessons = require("./data/openLessons.json");
 const openLesson = require("./logic/openLesson");
 const hideLesson = require("./logic/hideLesson");
+const checkUsers = require("./logic/checkUsers");
 
 
 const alreadyReadLessons = require("./data/alreadyReadLessons.json");
 const markLessonAsRead = require("./logic/markLessonAsRead");
 
-app.get("/api/users", (req, res) => {
-  const users = require("./data/users.json");
-  res.status(200).json({ success: true, data: users });
+app.post("/api/users", (req, res) => {
+  checkUsers(req, res);
 });
 
 // assignments
