@@ -25,8 +25,6 @@ const checkUsers = (req, res) => {
         return;
     }
 
-    console.log(userData);
-
     const { userName, email, password, type } = userData;
 
     const pathToFile = type === 'student' ? pathToStudents : pathToTeachers;
@@ -40,8 +38,6 @@ const checkUsers = (req, res) => {
         }
 
         data = JSON.parse(data);
-
-        console.log(data);
 
         const foundUser = data.find(
             (user) => (user.email === email || user.userName === userName) && user.password === password && user.type === type
